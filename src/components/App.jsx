@@ -2,13 +2,22 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from '../components/VideoList.js';
 import VideoPlayer from '../components/VideoPlayer.js';
 import Search from '../components/Search.js';
+import fakeVideos from '../../spec/data/fakeVideoData.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);                                                                                                                                                                                
     this.state = {
-      exampleVids: this.props.exampleVids
+      videoList: exampleVideoData,
+      video: exampleVideoData[0],
+
     };
+  }
+
+  onTitleClick() {
+    this.setState({
+      video: 'bla'
+    });
   }
 
   render() {
@@ -22,10 +31,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-  md-7">
-            <div><h5><em>videoPlayer</em> view goes here</h5></div>
+            <VideoPlayer video={this.state.video}/>
           </div>
           <div className="col-md-5">
-            <VideoList vids={this.state.exampleVids}/>
+            <VideoList videoList={this.state.videoList}/>
           </div>
         </div>
       </div>
